@@ -1,0 +1,122 @@
+/* --- BASE MOBILE STYLES (Default) --- */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: none; /* Hide sidebar on mobile */
+}
+
+.main-content {
+  flex: 1;
+  padding-bottom: 80px; /* Space for bottom nav */
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+  flex: 1;
+}
+
+.nav-item.active { color: #007bff; font-weight: bold; }
+.nav-icon { width: 24px; height: 24px; }
+
+.fab {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #007bff;
+  color: white;
+  border: none;
+  z-index: 999;
+}
+
+/* --- DESKTOP STYLES (Screen wider than 768px) --- */
+@media (min-width: 768px) {
+  .dashboard-container {
+    flex-direction: row; /* Sidebar and Content side-by-side */
+  }
+
+  .bottom-nav {
+    display: none; /* Hide bottom nav on desktop */
+  }
+
+  .sidebar {
+    display: flex; /* Show sidebar */
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+  }
+
+  .sidebar-header {
+    padding: 24px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #007bff;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #444;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+
+  .sidebar-item:hover {
+    background: #e9ecef;
+  }
+
+  .sidebar-item.active {
+    background: #007bff;
+    color: white;
+  }
+
+  .main-content {
+    padding-bottom: 20px; /* Remove mobile nav padding */
+    padding-left: 20px;
+    max-width: 900px; /* Optional: center content on large screens */
+  }
+
+  .fab {
+    bottom: 30px; /* Move FAB lower since bottom nav is gone */
+    right: 40px;
+  }
+}

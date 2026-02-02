@@ -1,0 +1,116 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.login-form {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1 { margin: 0 0 10px 0; }
+
+/* Grouping fields to stack errors vertically */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.password-wrapper {
+  position: relative; /* Anchor for the absolute toggle button */
+  width: 100%;
+}
+
+/* Common sizing for all inputs and the button */
+input[type="text"],
+input[type="password"],
+.login-btn {
+  width: 100%;
+  height: 50px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Ensure password text doesn't go under the eye icon */
+input[type="password"],
+.password-wrapper input[type="text"] {
+  padding-right: 45px;
+}
+
+/* Red outline for errors */
+.error-outline {
+  border: 1px solid red !important;
+}
+
+/* Positioning the Eye Icon accurately */
+.toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  color: #666;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Error text styling - stays below the field */
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.extra-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-link {
+  color: #0066ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+.global-error-box {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ef9a9a;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 10px;
+}

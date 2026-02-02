@@ -1,0 +1,59 @@
+.settings-container {
+  padding: 0 0 20px 0;
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 15px;
+}
+
+.settings-group {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.settings-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border: none;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item:active {
+  background-color: #f9f9f9;
+}
+
+/* Specific Logout Button Styling */
+.logout-btn {
+  justify-content: flex-start;
+  gap: 12px;
+  color: #dc3545; /* Red color for logout */
+  font-weight: 600;
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.chevron {
+  width: 18px;
+  height: 18px;
+  color: #ccc;
+}
