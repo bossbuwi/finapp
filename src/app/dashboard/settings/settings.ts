@@ -14,8 +14,8 @@ export class SettingsComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/login'], { replaceUrl: true });
+  async onLogout() {
+    await this.authService.logout();
+    await this.router.navigate(['/login'], {replaceUrl: true});
   }
 }

@@ -37,17 +37,17 @@ export class LoginComponent {
     this.showPassword.update(v => !v);
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
-    const credentials: LoginCredentials = this.loginForm.value as LoginCredentials;
+    const credentials = this.loginForm.value as LoginCredentials;
+    const success = await this.authService.login(credentials);
 
-    const success = this.authService.login(credentials);
     if (success) {
-      this.router.navigate([''], { replaceUrl: true });
+      await this.router.navigate(['/home'], {replaceUrl: true});
     }
   }
 
