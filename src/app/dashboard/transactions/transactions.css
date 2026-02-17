@@ -66,3 +66,19 @@
     bottom: 30px;
   }
 }
+
+/* Add this to your existing transactions.component.css */
+.list-item.clickable {
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+.list-item.clickable:hover {
+  background-color: #fcfcfc;
+  border-color: #007bff;
+}
+
+.list-item.clickable:active {
+  transform: scale(0.98);
+  background-color: #f0f7ff;
+}

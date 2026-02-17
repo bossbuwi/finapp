@@ -4,7 +4,8 @@
 
 <div class="list-container">
   @for (t of transactionService.transactions(); track t.id) {
-    <div class="list-item">
+    <!-- Added (click) and a class for styling -->
+    <div class="list-item clickable" (click)="viewDetails(t)">
       <div class="item-info">
         <span class="item-date">{{ t.transactionDate | date:'mediumDate' }}</span>
         <span class="item-type">{{ t.type | titlecase }}</span>
@@ -20,17 +21,24 @@
   }
 </div>
 
-<!-- Floating Action Button now lives here -->
 <button class="fab" (click)="showAddModal.set(true)" aria-label="Add transaction">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="fab-icon">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
   </svg>
 </button>
 
-<!-- Modal -->
+<!-- Add Modal -->
 @if (showAddModal()) {
   <app-add-transaction
     (close)="showAddModal.set(false)"
     (saved)="handleAdd($event)">
   </app-add-transaction>
+}
+
+<!-- Details Modal -->
+@if (selectedTransaction()) {
+  <app-transaction-detail
+    [transaction]="selectedTransaction()!"
+    (close)="closeDetails()">
+  </app-transaction-detail>
 }

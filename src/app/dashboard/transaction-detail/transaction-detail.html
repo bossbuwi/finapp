@@ -1,0 +1,49 @@
+<div class="modal-overlay" (click)="close.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Transaction Details</h2>
+      <button class="close-icon-btn" (click)="close.emit()">&times;</button>
+    </div>
+
+    <div class="detail-body">
+      <!-- Amount Display -->
+      <div class="amount-display" [class]="transaction.type">
+        <span class="label">Amount</span>
+        <h1 class="value">{{ transaction.amount | currency }}</h1>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Type</span>
+          <span class="value">{{ transaction.type | titlecase }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Transaction Date</span>
+          <span class="value">{{ transaction.transactionDate | date:'fullDate' }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Created On</span>
+          <span class="value">{{ transaction.createdAt | date:'medium' }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Last Updated</span>
+          <span class="value">{{ transaction.updatedAt | date:'medium' }}</span>
+        </div>
+
+        @if (transaction.note) {
+          <div class="info-item full-width">
+            <span class="label">Notes</span>
+            <p class="note-text">{{ transaction.note }}</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-close" (click)="close.emit()">Back to List</button>
+    </div>
+  </div>
+</div>
