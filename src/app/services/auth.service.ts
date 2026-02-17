@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
-import { LoginCredentials } from '../login/login-credentials';
+import { LoginCredentialsModel } from '../models/login-credentials.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -40,7 +40,7 @@ export class AuthService {
     });
   }
 
-  async login(credentials: LoginCredentials): Promise<boolean> {
+  async login(credentials: LoginCredentialsModel): Promise<boolean> {
     // Clear any existing errors
     this.backendError.set(null);
 

@@ -1,4 +1,4 @@
-export interface LoginCredentials {
+export interface LoginCredentialsModel {
   username: string;
   password: string;
   rememberMe?: boolean;

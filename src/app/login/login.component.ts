@@ -3,14 +3,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { LoginCredentials } from './login-credentials';
+import { LoginCredentialsModel } from '../models/login-credentials.model';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
@@ -43,7 +43,7 @@ export class LoginComponent {
       return;
     }
 
-    const credentials = this.loginForm.value as LoginCredentials;
+    const credentials = this.loginForm.value as LoginCredentialsModel;
     const success = await this.authService.login(credentials);
 
     if (success) {

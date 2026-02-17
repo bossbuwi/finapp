@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard';
 import { authGuard } from './guards/auth.guard';
-import { HomeComponent } from './dashboard/home/home';
-import { TransactionsComponent } from './dashboard/transactions/transactions';
-import { SettingsComponent } from './dashboard/settings/settings';
+import { HomeComponent } from './dashboard/home/home.component';
+import { TransactionsComponent } from './dashboard/transactions/transactions.component';
+import { SettingsComponent } from './dashboard/settings/settings.component';
 
 export const routes: Routes = [
   {

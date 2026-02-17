@@ -7,8 +7,8 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-settings',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './settings.html',
-  styleUrls: ['./settings.css']
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
   private authService = inject(AuthService);

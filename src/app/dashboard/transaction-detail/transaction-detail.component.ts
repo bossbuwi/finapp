@@ -6,8 +6,8 @@ import { Transaction } from '../../models/transaction.model';
   selector: 'app-transaction-detail',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './transaction-detail.html',
-  styleUrl: './transaction-detail.css'
+  templateUrl: './transaction-detail.component.html',
+  styleUrl: './transaction-detail.component.css'
 })
 export class TransactionDetailComponent {
   @Input({ required: true }) transaction!: Transaction;

@@ -1,16 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransactionService } from '../../services/transaction.service';
-import { AddTransactionComponent } from '../add-transaction/add-transaction';
-import { TransactionDetailComponent } from '../transaction-detail/transaction-detail';
+import { AddTransactionComponent } from '../add-transaction/add-transaction.component';
+import { TransactionDetailComponent } from '../transaction-detail/transaction-detail.component';
 import { Transaction } from '../../models/transaction.model';
 
 @Component({
   selector: 'app-transactions',
   standalone: true,
   imports: [CommonModule, AddTransactionComponent, TransactionDetailComponent],
-  templateUrl: './transactions.html',
-  styleUrls: ['./transactions.css']
+  templateUrl: './transactions.component.html',
+  styleUrls: ['./transactions.component.css']
 })
 export class TransactionsComponent {
   transactionService = inject(TransactionService);

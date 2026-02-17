@@ -7,8 +7,8 @@ import { TransactionType } from '../../models/transaction.model';
   selector: 'app-add-transaction',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './add-transaction.html',
-  styleUrl: './add-transaction.css'
+  templateUrl: './add-transaction.component.html',
+  styleUrl: './add-transaction.component.css'
 })
 export class AddTransactionComponent {
   @Output() close = new EventEmitter<void>();
