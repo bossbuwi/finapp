@@ -1,0 +1,68 @@
+.list-container {
+  padding: 0 15px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.item-type {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.item-amount {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.expense { color: #dc3545; }
+.savings { color: #28a745; }
+
+/* FAB Specific Styles */
+.fab {
+  position: fixed;
+  bottom: 85px; /* Adjusting to sit above mobile bottom nav */
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.fab-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Adjust FAB for Desktop Sidebar */
+@media (min-width: 768px) {
+  .fab {
+    bottom: 30px;
+  }
+}

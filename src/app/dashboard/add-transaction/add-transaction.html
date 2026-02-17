@@ -1,0 +1,70 @@
+<div class="modal-overlay" (click)="close.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Add Transaction</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- Type Toggle -->
+      <div class="toggle-group">
+        <button
+          type="button"
+          [class.active]="type === 'expense'"
+          (click)="setType('expense')">
+          Expense
+        </button>
+        <button
+          type="button"
+          [class.active]="type === 'savings'"
+          (click)="setType('savings')">
+          Savings
+        </button>
+      </div>
+
+      <!-- Amount Input -->
+      <div class="input-group">
+        <label for="amount">Amount</label>
+        <input
+          id="amount"
+          type="number"
+          formControlName="amount"
+          placeholder="0.00"
+          step="0.01"
+        >
+        @if (form.get('amount')?.touched && form.get('amount')?.invalid) {
+          <small class="error">Please enter a valid amount.</small>
+        }
+      </div>
+
+      <!-- Date Input -->
+      <div class="input-group">
+        <label for="date">Transaction Date</label>
+        <input
+          id="date"
+          type="date"
+          formControlName="transactionDate"
+        >
+      </div>
+
+      <!-- Note Input -->
+      <div class="input-group">
+        <label for="note">Note (Optional)</label>
+        <input
+          id="note"
+          type="text"
+          formControlName="note"
+          placeholder="What was this for?"
+        >
+      </div>
+
+      <!-- Actions -->
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" (click)="close.emit()">
+          Cancel
+        </button>
+        <button type="submit" class="btn-save" [disabled]="form.invalid">
+          Save Transaction
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,14 +10,4 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./dashboard.css']
 })
 export class DashboardComponent {
-  private router = inject(Router);
-
-  // Helper to check which route is active to show/hide the FAB
-  isTransactionsPage(): boolean {
-    return this.router.url === '/transactions';
-  }
-
-  addItem() {
-    alert('Add transaction logic');
-  }
 }
