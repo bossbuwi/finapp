@@ -2,6 +2,10 @@
   <h1>Transactions</h1>
 </header>
 
+@if (transactionService.isLoading()) {
+  <app-loading-spinner />
+}
+
 <div class="list-container">
   @for (t of transactionService.transactions(); track t.id) {
     <!-- Added (click) and a class for styling -->

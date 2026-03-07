@@ -1,4 +1,7 @@
 <div class="login-container">
+  @if (authService.isLoading()) {
+    <app-loading-spinner />
+  }
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
     <h1>Login</h1>
 

@@ -1,11 +1,10 @@
-import { Injectable, signal } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment';
+import { inject, Injectable, signal } from '@angular/core';
 import { LoginCredentialsModel } from '../models/login-credentials.model';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private supabase: SupabaseClient;
+  private supabase = inject(SupabaseService).client; // Use shared client
   private readonly STORAGE_KEY = 'expense_tracker_auth';
   // Track errors
   backendError = signal<string | null>(null);
@@ -14,23 +13,9 @@ export class AuthService {
     localStorage.getItem(this.STORAGE_KEY) === 'true' ||
     sessionStorage.getItem(this.STORAGE_KEY) === 'true'
   );
+  isLoading = signal<boolean>(false);
 
   constructor() {
-    this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey,
-      {
-        auth: {
-          autoRefreshToken: true,
-          persistSession: true,
-          detectSessionInUrl: true,
-          lock: async (_name: string, _acquireTimeout: number, callback: () => Promise<any>) => {
-            return await callback();
-          }
-        }
-      }
-    );
-
     this.supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
         this.isAuthenticated.set(false);
@@ -43,13 +28,13 @@ export class AuthService {
   async login(credentials: LoginCredentialsModel): Promise<boolean> {
     // Clear any existing errors
     this.backendError.set(null);
-
+    this.isLoading.set(true);
     // Attempt to login using Supabase
     const { data, error } = await this.supabase.auth.signInWithPassword({
       email: credentials.username,
       password: credentials.password,
     });
-
+    this.isLoading.set(false);
     // Check for backend errors
     if (error) {
       this.backendError.set(error.message);
