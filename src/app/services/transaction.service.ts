@@ -1,4 +1,4 @@
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, signal, inject, computed } from '@angular/core';
 import { Transaction } from '../models/transaction.model';
 import { AuthService } from './auth.service';
 import { SupabaseService } from './supabase.service';
@@ -76,4 +76,24 @@ export class TransactionService {
     }
     this.isLoading.set(false);
   }
+
+  // Offline methods
+  totalBalance = computed(() =>
+    this.transactions().reduce((acc, t) => acc + t.amount, 0)
+  );
+
+  totalSavings = computed(() =>
+    this.transactions()
+      .filter(t => t.type === 'savings')
+      .reduce((acc, t) => acc + t.amount, 0)
+  );
+
+  totalExpenses = computed(() =>
+    this.transactions()
+      .filter(t => t.type === 'expense')
+      .reduce((acc, t) => acc + Math.abs(t.amount), 0)
+  );
+
+  // Bonus: Count of transactions
+  transactionCount = computed(() => this.transactions().length);
 }

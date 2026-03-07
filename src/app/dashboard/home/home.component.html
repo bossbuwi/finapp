@@ -1,5 +1,60 @@
-<header class="header"><h1>Dashboard</h1></header>
-<div class="summary-card">
-  <p>Total Balance</p>
-  <h2>$2,950.00</h2>
+<div class="home-container">
+  <!-- Loading Spinner Overlay -->
+  @if (transactionService.isLoading()) {
+    <app-loading-spinner/>
+  }
+  <header class="header">
+    <h1>Summary</h1>
+  </header>
+
+  <!-- Main Balance Card -->
+  <div class="balance-card"
+       [class.pos-bg]="transactionService.totalBalance() > 0"
+       [class.neg-bg]="transactionService.totalBalance() < 0"
+       [class.zero-bg]="transactionService.totalBalance() === 0">
+
+    <span class="label">Total Balance</span>
+    <h2 class="amount">{{ transactionService.totalBalance() | currency }}</h2>
+
+    <div class="card-footer">
+      <span>Based on {{ transactionService.transactionCount() }} entries</span>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-box savings">
+      <div class="icon-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="label">Savings</span>
+        <span class="value">{{ transactionService.totalSavings() | currency }}</span>
+      </div>
+    </div>
+
+    <div class="stat-box expense">
+      <div class="icon-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="label">Expenses</span>
+        <span class="value">{{ transactionService.totalExpenses() | currency }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Action or Info Bit -->
+  <div class="info-section">
+    <h3>Recent Activity</h3>
+    @if (transactionService.transactions().length > 0) {
+      <p>Last transaction: {{ transactionService.transactions()[0].transactionDate | date }}</p>
+    } @else {
+      <p>No recent activity. Start adding transactions!</p>
+    }
+  </div>
 </div>

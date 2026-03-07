@@ -1,0 +1,113 @@
+/* home.component.css */
+
+.home-container {
+  padding: 0 0 20px 0;
+}
+
+.header {
+  padding: 20px;
+}
+
+/* Base Card Styles (Shared properties) */
+.balance-card {
+  margin: 0 20px 24px;
+  padding: 30px;
+  color: white;
+  border-radius: 24px;
+  text-align: center;
+  transition: background 0.5s ease; /* Smooth color transition */
+}
+
+/* Positive State (Green) */
+.balance-card.pos-bg {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+}
+
+/* Negative State (Red) */
+.balance-card.neg-bg {
+  background: linear-gradient(135deg, #dc3545, #bd2130);
+  box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+}
+
+/* Zero State (Blue - Original) */
+.balance-card.zero-bg {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Typography inside the card */
+.balance-card .label {
+  font-size: 14px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.balance-card .amount {
+  font-size: 36px;
+  margin: 10px 0;
+  font-weight: 800;
+}
+
+.card-footer {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* Grid for Savings/Expenses */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 0 20px;
+}
+
+.stat-box {
+  background: white;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle svg { width: 20px; height: 20px; }
+
+.savings .icon-circle { background: #e8f5e9; color: #2e7d32; }
+.expense .icon-circle { background: #ffebee; color: #c62828; }
+
+.stat-info { display: flex; flex-direction: column; }
+.stat-info .label { font-size: 12px; color: #888; }
+.stat-info .value { font-weight: bold; color: #333; font-size: 15px; }
+
+/* Info Section */
+.info-section {
+  margin: 30px 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 18px;
+}
+
+.info-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.info-section p {
+  margin: 0;
+  color: #888;
+  font-size: 14px;
+}
