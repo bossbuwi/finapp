@@ -16,7 +16,7 @@ import { LoadingSpinnerComponent } from '../../ui/loading-spinner.component';
 export class TransactionsComponent {
   transactionService = inject(TransactionService);
   showAddModal = signal(false);
-  // Track which transaction is currently being viewed
+  showEditModal = signal<Transaction | null>(null);
   selectedTransaction = signal<Transaction | null>(null);
 
   ngOnInit() {
@@ -29,11 +29,24 @@ export class TransactionsComponent {
     this.showAddModal.set(false);
   }
 
+  handleUpdate(data: any) {
+    const transactionToUpdate = this.showEditModal();
+    if (transactionToUpdate) {
+      this.transactionService.updateTransaction(transactionToUpdate.id, data);
+      this.showEditModal.set(null);
+    }
+  }
+
   viewDetails(t: Transaction) {
     this.selectedTransaction.set(t);
   }
 
   closeDetails() {
     this.selectedTransaction.set(null);
+  }
+
+  openEditModal(t: Transaction) {
+    this.selectedTransaction.set(null); // Close detail view first
+    this.showEditModal.set(t);           // Open the Edit modal
   }
 }

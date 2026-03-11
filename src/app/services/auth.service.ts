@@ -6,6 +6,8 @@ import { SupabaseService } from './supabase.service';
 export class AuthService {
   private supabase = inject(SupabaseService).client; // Use shared client
   private readonly STORAGE_KEY = 'expense_tracker_auth';
+  // Track current user id
+  currentUserId = signal<string | null>(null);
   // Track errors
   backendError = signal<string | null>(null);
   // Track authentication state
@@ -16,6 +18,10 @@ export class AuthService {
   isLoading = signal<boolean>(false);
 
   constructor() {
+    // Initialize user ID if session already exists
+    this.supabase.auth.getSession().then(({ data }) => {
+      this.currentUserId.set(data.session?.user?.id || null);
+    });
     this.supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
         this.isAuthenticated.set(false);

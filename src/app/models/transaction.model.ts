@@ -8,8 +8,12 @@ export interface Transaction {
   createdAt: string;
   updatedAt: string;
   note?: string;
-  user_id: string;         // The creator's ID
-  profiles?: {             // Joined data from the profiles table
+  user_id: string;
+  updated_by?: string;
+  profiles?: {
+    display_name: string;
+  };
+  updater_profile?: {
     display_name: string;
   };
 }

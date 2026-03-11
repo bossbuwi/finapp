@@ -39,10 +39,20 @@
   </app-add-transaction>
 }
 
+<!-- Edit Modal -->
+@if (showEditModal()) {
+  <app-add-transaction
+    [editData]="showEditModal()"
+    (close)="showEditModal.set(null)"
+    (saved)="handleUpdate($event)">
+  </app-add-transaction>
+}
+
 <!-- Details Modal -->
 @if (selectedTransaction()) {
   <app-transaction-detail
     [transaction]="selectedTransaction()!"
-    (close)="closeDetails()">
+    (close)="closeDetails()"
+    (editRequest)="openEditModal($event)">
   </app-transaction-detail>
 }

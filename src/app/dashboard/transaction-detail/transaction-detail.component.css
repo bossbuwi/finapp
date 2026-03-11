@@ -71,9 +71,15 @@
   font-size: 14px;
 }
 
-.modal-actions { margin-top: 30px; }
+.modal-actions {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 12px;             /* Space between buttons */
+}
 
-.btn-close {
+/* Grouping styles for both buttons */
+.btn-close, .btn-edit {
   width: 100%;
   padding: 14px;
   background: #007bff;
@@ -81,5 +87,38 @@
   border: none;
   border-radius: 12px;
   font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s, transform 0.1s;
 }
+
+.btn-close:hover, .btn-edit:hover {
+  background-color: #0056b3;
+}
+
+.btn-close:active, .btn-edit:active {
+  transform: scale(0.98);
+}
+
+/* Optional: Change color of Edit to separate visually from Back (uncomment if desired) */
+/* .btn-edit { background: #28a745; } */
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/*.btn-close {*/
+/*  width: 100%;*/
+/*  padding: 14px;*/
+/*  background: #007bff;*/
+/*  color: white;*/
+/*  border: none;*/
+/*  border-radius: 12px;*/
+/*  font-weight: bold;*/
+/*  cursor: pointer;*/
+/*}*/

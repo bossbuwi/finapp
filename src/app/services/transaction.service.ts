@@ -25,14 +25,13 @@ export class TransactionService {
       .from('transactions')
       .select(`
         *,
-        profiles (
-          display_name
-        )
+        creator:profiles!user_id(display_name),
+        updater:profiles!updated_by(display_name)
       `)
       .order('transaction_date', { ascending: false });
 
     if (error) {
-      console.error('Error fetching:', error.message);
+      alert(error.message);
     } else {
       const mappedData = (data as any[]).map(row => ({
         id: row.id,
@@ -43,7 +42,8 @@ export class TransactionService {
         updatedAt: row.updated_at,
         note: row.note,
         user_id: row.user_id,
-        profiles: row.profiles
+        profiles: row.creator,
+        updater_profile: row.updater
       }));
 
       this.transactions.set(mappedData);
@@ -77,6 +77,29 @@ export class TransactionService {
     this.isLoading.set(false);
   }
 
+  async updateTransaction(id: string, updateData: any) {
+    this.isLoading.set(true);
+    const { data: userData } = await this.supabase.auth.getUser();
+
+    const { error } = await this.supabase
+      .from('transactions')
+      .update({
+        type: updateData.type,
+        amount: updateData.type === 'expense' ? -Math.abs(updateData.amount) : Math.abs(updateData.amount),
+        transaction_date: updateData.transactionDate,
+        note: updateData.note,
+        updated_by: userData.user?.id
+      })
+      .eq('id', id);
+
+    if (error) {
+      alert(error.message);
+    } else {
+      await this.fetchTransactions();
+    }
+    this.isLoading.set(false);
+  }
+
   // Offline methods
   totalBalance = computed(() =>
     this.transactions().reduce((acc, t) => acc + t.amount, 0)
@@ -94,6 +117,5 @@ export class TransactionService {
       .reduce((acc, t) => acc + Math.abs(t.amount), 0)
   );
 
-  // Bonus: Count of transactions
   transactionCount = computed(() => this.transactions().length);
 }

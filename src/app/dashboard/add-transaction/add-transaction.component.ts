@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject, Input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TransactionType } from '../../models/transaction.model';
+import { Transaction, TransactionType } from '../../models/transaction.model';
 
 @Component({
   selector: 'app-add-transaction',
@@ -11,20 +11,30 @@ import { TransactionType } from '../../models/transaction.model';
   styleUrl: './add-transaction.component.css'
 })
 export class AddTransactionComponent {
+  @Input() editData: Transaction | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() saved = new EventEmitter<any>();
 
   private fb = inject(FormBuilder);
-
   // Track selected type locally before submission
   type: TransactionType = 'expense';
-
   form = this.fb.group({
     amount: [null as number | null, [Validators.required, Validators.min(0.01)]],
     // Default to today's date in YYYY-MM-DD format
     transactionDate: [new Date().toISOString().split('T')[0], Validators.required],
     note: ['']
   });
+
+  ngOnInit() {
+    if (this.editData) {
+      this.type = this.editData.type;
+      this.form.patchValue({
+        amount: Math.abs(this.editData.amount),
+        transactionDate: this.editData.transactionDate.split('T')[0],
+        note: this.editData.note
+      });
+    }
+  }
 
   setType(val: TransactionType) {
     this.type = val;
