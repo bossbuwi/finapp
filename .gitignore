@@ -43,3 +43,8 @@ Thumbs.db
 
 # Ignore environment file
 src/environments/environment.ts
+
+# Supabase
+supabase/.temp
+supabase/pull
+.env
