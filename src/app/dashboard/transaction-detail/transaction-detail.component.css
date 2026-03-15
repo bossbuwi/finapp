@@ -112,13 +112,18 @@
   height: 18px;
 }
 
-/*.btn-close {*/
-/*  width: 100%;*/
-/*  padding: 14px;*/
-/*  background: #007bff;*/
-/*  color: white;*/
-/*  border: none;*/
-/*  border-radius: 12px;*/
-/*  font-weight: bold;*/
-/*  cursor: pointer;*/
-/*}*/
+.btn-delete {
+  width: 100%;
+  padding: 14px;
+  background: #fff;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-delete:active {
+  background: #fff5f5;
+  transform: scale(0.98);
+}
