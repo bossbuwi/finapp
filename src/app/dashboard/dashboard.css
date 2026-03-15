@@ -1,9 +1,13 @@
 /* --- BASE MOBILE STYLES (Default) --- */
-.dashboard-container {
+.dashboard-wrapper, .dashboard-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 
 .sidebar {
   display: none; /* Hide sidebar on mobile */
@@ -11,7 +15,10 @@
 
 .main-content {
   flex: 1;
-  padding-bottom: 80px; /* Space for bottom nav */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px;
+  width: 100%;
 }
 
 .bottom-nav {
@@ -57,7 +64,7 @@
 /* --- DESKTOP STYLES (Screen wider than 768px) --- */
 @media (min-width: 768px) {
   .dashboard-container {
-    flex-direction: row; /* Sidebar and Content side-by-side */
+    flex-direction: row;
   }
 
   .bottom-nav {
@@ -65,14 +72,15 @@
   }
 
   .sidebar {
-    display: flex; /* Show sidebar */
+    display: flex;
     flex-direction: column;
-    width: 260px;
+    width: 260px; /* Sidebar stays fixed width */
     height: 100vh;
     background: #f8f9fa;
     border-right: 1px solid #ddd;
     position: sticky;
     top: 0;
+    flex-shrink: 0; /* Prevents sidebar from squishing */
   }
 
   .sidebar-header {
@@ -110,9 +118,11 @@
   }
 
   .main-content {
-    padding-bottom: 20px; /* Remove mobile nav padding */
-    padding-left: 20px;
-    max-width: 900px; /* Optional: center content on large screens */
+    padding-bottom: 0;
+    /* Remove huge left padding, keep it tight */
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%; /* Occupies remaining width after sidebar */
   }
 
   .fab {

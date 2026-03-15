@@ -100,6 +100,30 @@ export class TransactionService {
     this.isLoading.set(false);
   }
 
+  async deleteTransaction(id: string) {
+    this.isLoading.set(true);
+    const { error } = await this.supabase
+      .from('transactions')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      alert(error.message);
+    } else {
+      await this.fetchTransactions();
+    }
+    this.isLoading.set(false);
+  }
+
+  async fetchDeletedTransactions() {
+    const { data, error } = await this.supabase
+      .from('recently_deleted_transactions')
+      .select(`*, profiles:user_id(display_name)`)
+      .order('deleted_at', { ascending: false });
+
+    return data || [];
+  }
+
   // Offline methods
   totalBalance = computed(() =>
     this.transactions().reduce((acc, t) => acc + t.amount, 0)

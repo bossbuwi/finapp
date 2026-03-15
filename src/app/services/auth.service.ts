@@ -49,7 +49,10 @@ export class AuthService {
 
     // If login is successful
     // Set authenticated signal
-    this.isAuthenticated.set(true);
+    if (data.user) {
+      this.currentUserId.set(data.user.id);
+      this.isAuthenticated.set(true);
+    }
     // Set storage (local or session)
     if (credentials.rememberMe) {
       localStorage.setItem(this.STORAGE_KEY, 'true');
@@ -64,6 +67,7 @@ export class AuthService {
     await this.supabase.auth.signOut();
     // Clear custom storage and authenticated signal
     this.isAuthenticated.set(false);
+    this.currentUserId.set(null);
     sessionStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.STORAGE_KEY);
   }
