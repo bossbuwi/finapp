@@ -29,8 +29,12 @@
   @for (t of transactionService.transactions(); track t.id) {
     <div class="list-item clickable" (click)="viewDetails(t)">
       <div class="item-info">
-        <span class="item-date">{{ t.transactionDate | date:'mediumDate' }}</span>
-        <span class="item-type">{{ t.type | titlecase }}</span>
+        <!-- Title is now the Transaction Name -->
+        <span class="item-title">{{ t.transactionName || 'Unnamed Transaction' }}</span>
+        <!-- Subtitle is Type and Date -->
+        <span class="item-subtitle">
+          {{ t.type | titlecase }} • {{ t.transactionDate | date:'mediumDate' }}
+        </span>
       </div>
       <span [class]="t.type" class="item-amount">
         {{ t.amount | currency }}

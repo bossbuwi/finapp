@@ -18,6 +18,11 @@
           <span class="value">{{ transaction.type | titlecase }}</span>
         </div>
 
+        <div class="info-item full-width">
+          <span class="label">Transaction Name</span>
+          <span class="value">{{ transaction.transactionName || 'N/A' }}</span>
+        </div>
+
         <div class="info-item">
           <span class="label">Transaction Date</span>
           <span class="value">{{ transaction.transactionDate | date:'fullDate' }}</span>
@@ -42,13 +47,6 @@
           <span class="label">Last Updated By</span>
           <span class="value">{{ transaction.updater_profile?.display_name || 'N/A' }}</span>
         </div>
-
-        @if (transaction.note) {
-          <div class="info-item full-width">
-            <span class="label">Notes</span>
-            <p class="note-text">{{ transaction.note }}</p>
-          </div>
-        }
       </div>
     </div>
 
