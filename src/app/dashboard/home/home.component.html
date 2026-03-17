@@ -23,7 +23,7 @@
 
   <!-- Stats Grid -->
   <div class="stats-grid">
-    <div class="stat-box savings">
+    <div class="stat-box savings clickable-card" (click)="openSavingsList()">
       <div class="icon-circle">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -71,6 +71,15 @@
       <p class="empty-text">No recent activity. Start adding transactions!</p>
     }
   </div>
+
+  @if (showFilteredList()) {
+    <app-transaction-list-modal
+      [title]="filteredTitle()"
+      [transactions]="filteredItems()"
+      (close)="showFilteredList.set(false)"
+      (select)="openItemDetails($event)">
+    </app-transaction-list-modal>
+  }
 
   <!-- Transaction Detail Modal -->
   @if (selectedTransaction()) {
