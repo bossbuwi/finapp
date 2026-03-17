@@ -74,6 +74,7 @@
 @if (selectedTransaction()) {
   <app-transaction-detail
     [transaction]="selectedTransaction()!"
+    [showActions]="true"
     (close)="closeDetails()"
     (editRequest)="openEditModal($event)">
   </app-transaction-detail>
