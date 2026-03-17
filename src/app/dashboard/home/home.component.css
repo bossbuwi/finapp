@@ -173,3 +173,18 @@
   color: #888;
   font-style: italic;
 }
+
+/* Add to home.component.css */
+.stat-box.clickable-card {
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.stat-box.clickable-card:hover {
+  background-color: #f8f9fa;
+  border-color: #28a745;
+}
+
+.stat-box.clickable-card:active {
+  transform: scale(0.96);
+}

@@ -5,9 +5,8 @@ import { SupabaseService } from './supabase.service';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
-  private supabase = inject(SupabaseService).client; // Use shared client
+  private supabase = inject(SupabaseService).client;
   private authService = inject(AuthService);
-  // Signal for the UI to bind to
   transactions = signal<Transaction[]>([]);
   isLoading = signal<boolean>(false);
 
@@ -24,23 +23,24 @@ export class TransactionService {
     const { data, error } = await this.supabase
       .from('transactions')
       .select(`
-        *,
-        creator:profiles!user_id(display_name),
-        updater:profiles!updated_by(display_name)
-      `)
-      .order('transaction_date', { ascending: false });
+      *,
+      creator:profiles!user_id(display_name),
+      updater:profiles!updated_by(display_name)
+    `)
+      .order('transaction_date', { ascending: false })
+      .order('created_at', { ascending: false });
 
     if (error) {
-      alert(error.message);
-    } else {
+      console.error('Error fetching:', error.message);
+    } else if (data) {
       const mappedData = (data as any[]).map(row => ({
         id: row.id,
         type: row.type,
         amount: row.amount,
         transactionDate: row.transaction_date,
+        transactionName: row.transaction_name,
         createdAt: row.created_at,
         updatedAt: row.updated_at,
-        transactionName: row.transaction_name,
         user_id: row.user_id,
         profiles: row.creator,
         updater_profile: row.updater
