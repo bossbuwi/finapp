@@ -22,7 +22,7 @@ export class AddTransactionComponent {
     amount: [null as number | null, [Validators.required, Validators.min(0.01)]],
     // Default to today's date in YYYY-MM-DD format
     transactionDate: [new Date().toISOString().split('T')[0], Validators.required],
-    note: ['']
+    transactionName: ['']
   });
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class AddTransactionComponent {
       this.form.patchValue({
         amount: Math.abs(this.editData.amount),
         transactionDate: this.editData.transactionDate.split('T')[0],
-        note: this.editData.note
+        transactionName: this.editData.transactionName
       });
     }
   }

@@ -40,7 +40,7 @@ export class TransactionService {
         transactionDate: row.transaction_date,
         createdAt: row.created_at,
         updatedAt: row.updated_at,
-        note: row.note,
+        transactionName: row.transaction_name,
         user_id: row.user_id,
         profiles: row.creator,
         updater_profile: row.updater
@@ -64,7 +64,7 @@ export class TransactionService {
         type: data.type,
         amount: data.type === 'expense' ? -Math.abs(data.amount) : Math.abs(data.amount),
         transaction_date: data.transactionDate,
-        note: data.note,
+        transaction_name: data.transactionName,
         user_id: user.id
       });
 
@@ -87,7 +87,7 @@ export class TransactionService {
         type: updateData.type,
         amount: updateData.type === 'expense' ? -Math.abs(updateData.amount) : Math.abs(updateData.amount),
         transaction_date: updateData.transactionDate,
-        note: updateData.note,
+        transaction_name: updateData.transactionName,
         updated_by: userData.user?.id
       })
       .eq('id', id);

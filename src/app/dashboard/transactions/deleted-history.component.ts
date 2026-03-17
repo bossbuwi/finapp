@@ -18,7 +18,7 @@ import { TransactionService } from '../../services/transaction.service';
           @for (item of deletedItems(); track item.id) {
             <div class="history-item">
               <div class="item-main">
-                <span class="type">{{ item.type | titlecase }}</span>
+                <span class="type">{{ item.transaction_name | titlecase }}</span>
                 <span class="amount" [class]="item.type">{{ item.amount | currency }}</span>
               </div>
               <div class="item-sub">
@@ -41,6 +41,8 @@ export class DeletedHistoryComponent implements OnInit {
 
   async ngOnInit() {
     const data = await this.transactionService.fetchDeletedTransactions();
+    console.log("Mapped data below:")
+    console.log(data)
     this.deletedItems.set(data);
   }
 }

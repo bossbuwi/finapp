@@ -7,7 +7,7 @@ export interface Transaction {
   transactionDate: string;
   createdAt: string;
   updatedAt: string;
-  note?: string;
+  transactionName?: string;
   user_id: string;
   updated_by?: string;
   profiles?: {

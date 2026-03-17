@@ -78,20 +78,32 @@
   background-color: #f0f7ff;
 }
 
+.item-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.item-subtitle {
+  font-size: 13px;
+  color: #777;
+}
+
 .item-info {
   display: flex;
   flex-direction: column;
 }
 
-.item-date {
-  font-size: 14px;
-  color: #666;
-}
+/*.item-date {*/
+/*  font-size: 14px;*/
+/*  color: #666;*/
+/*}*/
 
-.item-type {
-  font-weight: bold;
-  font-size: 16px;
-}
+/*.item-type {*/
+/*  font-weight: bold;*/
+/*  font-size: 16px;*/
+/*}*/
 
 .item-amount {
   font-weight: bold;
