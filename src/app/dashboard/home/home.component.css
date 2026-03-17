@@ -111,3 +111,65 @@
   color: #888;
   font-size: 14px;
 }
+
+/* Add these to home.component.css */
+
+.recent-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.recent-item-card:hover {
+  border-color: #007bff;
+  background-color: #f0f7ff;
+}
+
+.recent-item-card:active {
+  transform: scale(0.98);
+}
+
+.recent-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.recent-name {
+  font-weight: bold;
+  font-size: 15px;
+  color: #333;
+}
+
+.recent-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.recent-amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.recent-amount.expense { color: #dc3545; }
+.recent-amount.savings { color: #28a745; }
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  color: #ccc;
+}
+
+.empty-text {
+  margin-top: 10px;
+  color: #888;
+  font-style: italic;
+}

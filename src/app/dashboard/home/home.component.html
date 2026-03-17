@@ -48,13 +48,37 @@
     </div>
   </div>
 
-  <!-- Quick Action or Info Bit -->
+  <!-- Updated Recent Activity Section -->
   <div class="info-section">
     <h3>Recent Activity</h3>
     @if (transactionService.transactions().length > 0) {
-      <p>Last transaction: {{ transactionService.transactions()[0].transactionDate | date }}</p>
+      <!-- We pick the first item in the list (the most recent one) -->
+      @let recent = transactionService.transactions()[0];
+
+      <div class="recent-item-card" (click)="viewDetails(recent)">
+        <div class="recent-info">
+          <span class="recent-name">{{ recent.transactionName || 'Unnamed Transaction' }}</span>
+          <span class="recent-date">{{ recent.transactionDate | date:'mediumDate' }}</span>
+        </div>
+        <div class="recent-amount" [class]="recent.type">
+          {{ recent.amount | currency }}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="chevron">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </div>
+      </div>
     } @else {
-      <p>No recent activity. Start adding transactions!</p>
+      <p class="empty-text">No recent activity. Start adding transactions!</p>
     }
   </div>
+
+  <!-- Transaction Detail Modal -->
+  @if (selectedTransaction()) {
+    <app-transaction-detail
+      [transaction]="selectedTransaction()!"
+      [showActions]="false"
+      closeButtonText="Back to Home"
+      (close)="closeDetails()">
+    </app-transaction-detail>
+  }
 </div>

@@ -13,12 +13,15 @@ import { TransactionService } from '../../services/transaction.service';
 })
 export class TransactionDetailComponent {
   @Input({ required: true }) transaction!: Transaction;
+  @Input() showActions = true;
+  @Input() closeButtonText = 'Back to List';
   @Output() close = new EventEmitter<void>();
   @Output() editRequest = new EventEmitter<Transaction>();
   protected authService = inject(AuthService);
   private transactionService = inject(TransactionService);
 
   onDelete() {
+    if (!this.showActions) return;
     if (confirm('Are you sure you want to delete this? It cannot be restored.')) {
       this.transactionService.deleteTransaction(this.transaction.id);
       this.close.emit();
