@@ -95,16 +95,6 @@
   flex-direction: column;
 }
 
-/*.item-date {*/
-/*  font-size: 14px;*/
-/*  color: #666;*/
-/*}*/
-
-/*.item-type {*/
-/*  font-weight: bold;*/
-/*  font-size: 16px;*/
-/*}*/
-
 .item-amount {
   font-weight: bold;
   font-size: 18px;

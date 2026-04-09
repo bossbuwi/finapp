@@ -30,6 +30,13 @@ export class HomeComponent {
     this.showFilteredList.set(true);
   }
 
+  openExpensesList() {
+    const expenses = this.transactionService.transactions().filter(t => t.type === 'expense');
+    this.filteredTitle.set('Expenses Transactions');
+    this.filteredItems.set(expenses);
+    this.showFilteredList.set(true);
+  }
+
   openItemDetails(t: Transaction) {
     this.showFilteredList.set(false); // Close list
     this.selectedTransaction.set(t);  // Open details
