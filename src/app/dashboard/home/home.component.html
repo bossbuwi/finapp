@@ -14,7 +14,7 @@
        [class.zero-bg]="transactionService.totalBalance() === 0">
 
     <span class="label">Total Balance</span>
-    <h2 class="amount">{{ transactionService.totalBalance() | currency }}</h2>
+    <h2 class="amount">{{ transactionService.totalBalance() | currency:currencyService.selectedCurrency() }}</h2>
 
     <div class="card-footer">
       <span>Based on {{ transactionService.transactionCount() }} entries</span>
@@ -32,7 +32,7 @@
       </div>
       <div class="stat-info">
         <span class="label">Savings</span>
-        <span class="value">{{ transactionService.totalSavings() | currency }}</span>
+        <span class="value">{{ transactionService.totalSavings() | currency:currencyService.selectedCurrency() }}</span>
       </div>
     </div>
     <!-- Expenses List -->
@@ -44,7 +44,7 @@
       </div>
       <div class="stat-info">
         <span class="label">Expenses</span>
-        <span class="value">{{ transactionService.totalExpenses() | currency }}</span>
+        <span class="value">{{ transactionService.totalExpenses() | currency:currencyService.selectedCurrency() }}</span>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
           <span class="recent-date">{{ recent.transactionDate | date:'mediumDate' }}</span>
         </div>
         <div class="recent-amount" [class]="recent.type">
-          {{ recent.amount | currency }}
+          {{ recent.amount | currency:currencyService.selectedCurrency() }}
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="chevron">
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
           </svg>

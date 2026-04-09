@@ -6,6 +6,7 @@ import { TransactionDetailComponent } from '../transaction-detail/transaction-de
 import { Transaction } from '../../models/transaction.model';
 import { LoadingSpinnerComponent } from '../../ui/loading-spinner.component';
 import { DeletedHistoryComponent } from './deleted-history.component';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-transactions',
@@ -16,6 +17,7 @@ import { DeletedHistoryComponent } from './deleted-history.component';
 })
 export class TransactionsComponent {
   transactionService = inject(TransactionService);
+  currencyService = inject(CurrencyService);
   showAddModal = signal(false);
   showEditModal = signal<Transaction | null>(null);
   selectedTransaction = signal<Transaction | null>(null);

@@ -37,7 +37,7 @@
         </span>
       </div>
       <span [class]="t.type" class="item-amount">
-        {{ t.amount | currency }}
+        {{ t.amount | currency:currencyService.selectedCurrency() }}
       </span>
     </div>
   } @empty {

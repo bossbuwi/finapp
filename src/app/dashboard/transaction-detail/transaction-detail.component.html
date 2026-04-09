@@ -9,7 +9,7 @@
       <!-- Amount Display -->
       <div class="amount-display" [class]="transaction.type">
         <span class="label">Amount</span>
-        <h1 class="value">{{ transaction.amount | currency }}</h1>
+        <h1 class="value">{{ transaction.amount | currency:currencyService.selectedCurrency() }}</h1>
       </div>
 
       <div class="info-grid">

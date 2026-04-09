@@ -1,0 +1,20 @@
+<div class="modal-overlay" (click)="close.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h2>Select Currency</h2>
+      <button class="close-btn" (click)="close.emit()">&times;</button>
+    </div>
+
+    <div class="currency-list">
+      @for (c of currencies; track c.code) {
+        <button class="currency-item"
+                [class.active]="c.code === currentCode"
+                (click)="select.emit(c.code)">
+          <span class="currency-name">{{ c.name }}</span>
+          <span class="currency-code">{{ c.code }}</span>
+        </button>
+      }
+    </div>
+  </div>
+</div>

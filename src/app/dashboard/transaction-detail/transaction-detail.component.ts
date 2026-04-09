@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Transaction } from '../../models/transaction.model';
 import { AuthService } from '../../services/auth.service';
 import { TransactionService } from '../../services/transaction.service';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -19,6 +20,7 @@ export class TransactionDetailComponent {
   @Output() editRequest = new EventEmitter<Transaction>();
   protected authService = inject(AuthService);
   private transactionService = inject(TransactionService);
+  currencyService = inject(CurrencyService);
 
   onDelete() {
     if (!this.showActions) return;

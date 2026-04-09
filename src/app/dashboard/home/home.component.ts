@@ -5,6 +5,7 @@ import { LoadingSpinnerComponent } from '../../ui/loading-spinner.component';
 import { Transaction } from '../../models/transaction.model';
 import { TransactionDetailComponent } from '../transaction-detail/transaction-detail.component';
 import { TransactionListModalComponent } from '../../ui/transaction-list-modal.component';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent {
   filteredTitle = signal<string>('');
   filteredItems = signal<Transaction[]>([]);
   transactionService = inject(TransactionService);
+  currencyService = inject(CurrencyService);
 
   ngOnInit() {
     this.transactionService.fetchTransactions();

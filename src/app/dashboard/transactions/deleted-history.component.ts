@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransactionService } from '../../services/transaction.service';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-deleted-history',
@@ -19,7 +20,7 @@ import { TransactionService } from '../../services/transaction.service';
             <div class="history-item">
               <div class="item-main">
                 <span class="type">{{ item.transaction_name | titlecase }}</span>
-                <span class="amount" [class]="item.type">{{ item.amount | currency }}</span>
+                <span class="amount" [class]="item.type">{{ item.amount | currency:currencyService.selectedCurrency() }}</span>
               </div>
               <div class="item-sub">
                 Deleted by {{ item.profiles?.display_name }} on {{ item.deleted_at | date:'short' }}
@@ -37,12 +38,11 @@ import { TransactionService } from '../../services/transaction.service';
 export class DeletedHistoryComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   transactionService = inject(TransactionService);
+  currencyService = inject(CurrencyService);
   deletedItems = signal<any[]>([]);
 
   async ngOnInit() {
     const data = await this.transactionService.fetchDeletedTransactions();
-    console.log("Mapped data below:")
-    console.log(data)
     this.deletedItems.set(data);
   }
 }

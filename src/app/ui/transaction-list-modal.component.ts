@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Transaction } from '../models/transaction.model';
+import { CurrencyService } from '../services/currency.service';
 
 @Component({
   selector: 'app-transaction-list-modal',
@@ -22,7 +23,7 @@ import { Transaction } from '../models/transaction.model';
                 <span class="item-date">{{ item.transactionDate | date:'mediumDate' }}</span>
               </div>
               <span class="item-amount" [class]="item.type">
-                {{ item.amount | currency }}
+                {{ item.amount | currency:currencyService.selectedCurrency() }}
               </span>
             </div>
           } @empty {
@@ -39,4 +40,5 @@ export class TransactionListModalComponent {
   @Input({ required: true }) transactions: Transaction[] = [];
   @Output() close = new EventEmitter<void>();
   @Output() select = new EventEmitter<Transaction>();
+  currencyService = inject(CurrencyService);
 }
